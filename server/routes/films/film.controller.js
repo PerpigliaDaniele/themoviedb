@@ -13,10 +13,20 @@ module.exports = function(){
             })
     }
 
-
+    var getOne = function(req,res){
+        Film.findById(req.params.id)
+        .exec()
+        .then(function(film){
+            res.status(200).json(film)
+        })
+        .catch(function(err){
+            res.status(500).send(err)
+        })
+    }
 
     return {
-        getAll:getAll
+        getAll:getAll,
+        getOne:getOne
     }
 
 
